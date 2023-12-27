@@ -169,7 +169,7 @@ const Details = (props: IProps) => {
 
 const PhotoGallery = (props: IProps) => {
     const { data, setData, isEdit } = props;
-    const [images, setImages] = useState<FileList>([]);
+    const [images, setImages] = useState<FileList>();
     const [loading, setLoading] = useState<boolean>(false);
     console.log(data);
     useEffect(() => {
