@@ -17,18 +17,19 @@ const RecipeCard = (props: RecipeCardProps) => {
                 />
                 <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
             </div>
-            <div className="max-w-xl">
-                <div className="mt-8 flex items-center gap-x-2 text-xs">
-                    <span className="inline-flex items-center gap-x-1.5 rounded-full px-2 py-1 text-xs font-medium text-gray-900 ring-1 ring-inset ring-gray-200">
-                        <svg className="h-1.5 w-1.5 fill-green-500" viewBox="0 0 6 6" aria-hidden="true">
-                            <circle cx={3} cy={3} r={3} />
-                        </svg>
-                        {recipe.user?.username}
-                    </span>
+            <div className="max-w-xl ">
+                <div className="mt-8 flex items-center gap-2 text-xs">
+
                     <time dateTime={""} className="text-gray-500">
                         {""}
                     </time>
-                    <div className="flex flex-wrap gap-x-2">
+                    <div className="flex items-center flex-wrap gap-2">
+                        <span className="inline-flex items-center gap-x-1.5 rounded-full px-2 py-1 text-xs font-medium text-gray-900 ring-1 ring-inset ring-gray-200">
+                            <svg className="h-1.5 w-1.5 fill-green-500" viewBox="0 0 6 6" aria-hidden="true">
+                                <circle cx={3} cy={3} r={3} />
+                            </svg>
+                            {recipe.user?.username}
+                        </span>
                         {recipe.ingredients.slice(0, 3).map((ingredient, index) => (
                             <a
                                 key={index}

@@ -12,11 +12,20 @@ export async function createRecipe(userId: string, body: IRecipe) {
   return recipeObj;
 }
 
-export async function getRecipes(page: number, limit: number, search?: string) {
-  return Recipe.find({ name: { $regex: search || "", $options: "i" } })
-    .skip((page - 1) * limit)
-    .limit(limit)
-    .populate("user", "name username");
+export async function getRecipes(page: number, limit: number, search: string) {
+  let query = {};
+  if (search) {
+    query = {
+      $or: [
+        { name: { $regex: search, $options: "i" } },
+        { description: { $regex: search, $options: "i" } },
+        { ingredients: { $regex: search, $options: "i" } },
+      ],
+    };
+  }
+  const data = await Recipe.find(query).populate("user", "name username");
+  console.log(data);
+  return data;
 }
 
 export async function getRecipeById(id: string) {

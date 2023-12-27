@@ -1,5 +1,4 @@
 import { Response } from "express";
-import { disconnectDatabase } from "../config/mongo";
 
 export function SuccessRequestHandler(
   res: Response,
@@ -21,7 +20,6 @@ export function ErrorRequestHandler(res: Response, message: string) {
 }
 
 export async function ServerErrorRequestHandler(res: Response, error: any) {
-  await disconnectDatabase();
   return res.status(500).json({
     success: false,
     message: "Server Request Failed",

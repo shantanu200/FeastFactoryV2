@@ -7,7 +7,7 @@ const ROUTES = {
   },
   RECIPE: {
     CREATE: "/recipe",
-    GETALL: "/recipe",
+    GETALL: "/recipe/posts",
   },
 };
 

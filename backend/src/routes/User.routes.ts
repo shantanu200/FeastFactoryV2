@@ -18,6 +18,6 @@ router
 
 router.route("/login").post(loginUserModel);
 
-router.route("/:id").get(authMiddleware, getUserByIdModel);
+router.route("/:id").get(getUserByIdModel);
 
 export default router;

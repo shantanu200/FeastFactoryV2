@@ -64,7 +64,7 @@ export async function APIHandler(
         success: false,
         loading: true,
         message: "Axios API request failed",
-        error: error.response?.data.error,
+        error: error.response?.data.message,
       };
     }
     return {

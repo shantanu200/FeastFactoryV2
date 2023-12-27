@@ -47,9 +47,7 @@ const InstructionsMenu = (props: IProps) => {
             setInstructionString("");
             setEditIndex(-1);
         } else if (key === "Instructions" && value.length > 0 && e.key === "Enter" && editIndex === -1) {
-            const data = value.trim().split(",");
-            console.log("Ingredients", data);
-            setInstructions((prev) => [...prev, ...data]);
+            setInstructions((prev) => [...prev, value]);
             setInstructionString("");
         }
     }
@@ -65,9 +63,9 @@ const InstructionsMenu = (props: IProps) => {
             <TextField type='text' label='Recipe Instructions' name='instructions' value={instructionString} handleKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => handleKeyDown(e, "Instructions")} handleChange={(e: React.ChangeEvent<HTMLInputElement>) => setInstructionString(e.target.value)} />
             <div className="flex flex-col gap-2 my-2">
                 {instructions.map((instruction, index) => (
-                    <span key={index} className="inline-flex items-center justify-between gap-x-0.5 rounded-md bg-gray-100 px-2 py-1 text-sm font-medium text-gray-600">
+                    <span key={index} className="inline-flex items-center justify-between gap-x-0.5 rounded-md bg-gray-100 px-2 py-1 text-sm font-medium text-gray-600 text-justify">
                         {index + 1}. {instruction}
-                        <div className="inline-flex items-center gap-2">
+                        <div className="inline-flex items-center gap-2 ml-2">
                             <PencilIcon className="w-3 h-3 cursor-pointer" onClick={() => { setInstructionString(instruction); setEditIndex(index) }} />
                             <button onClick={() => handleDelete(index)} type="button" className="group relative -mr-1 h-3.5 w-3.5 rounded-sm hover:bg-gray-500/20">
                                 <span className="sr-only">Remove</span>

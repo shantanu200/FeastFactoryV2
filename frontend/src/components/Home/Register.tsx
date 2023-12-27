@@ -6,6 +6,7 @@ import { APIHandler } from '../../server/API';
 import ROUTES from '../../server/Routes';
 import Modal from '../../common/Modal';
 import { ValidationSchemaRegister } from '../../validation/Validator';
+import { CheckCircleIcon } from '@heroicons/react/24/outline';
 
 
 interface Props {
@@ -15,8 +16,8 @@ interface Props {
 const Register = (props: Props) => {
     const { setIsLogin } = props;
     const [loading, setLoading] = useState<boolean>(false);
-    const [isError, setIsError] = useState<boolean>(false);
-    const [alertMessage, setAlertMessage] = useState<string>("");
+    const [errorText, setErrorText] = useState<string>("");
+    const [error, setError] = useState<boolean>(false);
     return (
         <section>
             <div>
@@ -36,8 +37,9 @@ const Register = (props: Props) => {
                     if (success) {
                         setIsLogin(true);
                     } else {
-                        setIsError(true);
-                        setAlertMessage(String(message));
+                        setError(true);
+                        setErrorText(String(error));
+                        setLoading(false);
                     }
                 }}
             >
@@ -51,7 +53,18 @@ const Register = (props: Props) => {
                     </section>
                 )}
             </Formik>
-            <Modal open={isError} setOpen={() => setIsError(false)} children={<h1>{alertMessage}</h1>} />
+            <Modal open={error} setOpen={() => setError(false)} children={
+                <div className="rounded-md bg-red-50 p-4">
+                    <div className="flex">
+                        <div className="flex-shrink-0">
+                            <CheckCircleIcon className="h-5 w-5 text-red-400" aria-hidden="true" />
+                        </div>
+                        <div className="ml-3">
+                            <p className="text-sm font-medium text-red-800">{errorText}</p>
+                        </div>
+                    </div>
+                </div>
+            } />
         </section>
     )
 }
